@@ -2,9 +2,9 @@ pipeline {
 
 agent any
 
-stages('Build and Push Image') {
+stages {
 
-stage{
+stage('Build and Push Image'){
 steps {
    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub') {
 
