@@ -7,7 +7,7 @@ stages {
 stage('Build and Push Image'){
 steps {
  script{
-   docker.withRegistry('https://registry.hub.docker.com', 'docker_hub') {
+   docker.withRegistry('https://hub.docker.com', 'docker_hub') {
 
         def customImage = docker.build("pmayukh/webapp:${env.BUILD_NUMBER}")
 
