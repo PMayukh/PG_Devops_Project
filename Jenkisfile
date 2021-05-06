@@ -1,6 +1,22 @@
 pipeline {
 
-environment {
+agent any
+
+stages('Build and Push Image') {
+
+stage{
+steps {
+   docker.withRegistry('https://registry.hub.docker.com', 'docker_hub') {
+
+        def customImage = docker.build("pmayukh/webapp:${env.BUILD_NUMBER}")
+
+        /* Push the container to the custom Registry */
+        customImage.push()
+  }
+ }
+}  
+        
+/* environment {
 
 registry = "pmayukh/PG_devops_project"
 registryCredential = docker_hub
@@ -40,3 +56,4 @@ stage('Deploy image'){
 
 }
 }
+*/ 
