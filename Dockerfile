@@ -5,6 +5,8 @@ RUN apt-get install -y tzdata && \
     apt-get install -y software-properties-common && \
     apt-get install apache2 -y
 
-CMD ["/sbin/init"]
+COPY index.html /var/www/html
+
+CMD ["/bin/bash"]
 
 EXPOSE 80
