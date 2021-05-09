@@ -1,6 +1,5 @@
-# Multi-stage build setup (https://docs.docker.com/develop/develop-images/multistage-build/)
 
-# Stage 1 (to create a "build" image, ~140MB)
+# Build the image for running the java application using ubuntu
 FROM ubuntu:18.04
 
 RUN apt update -y && \
@@ -15,3 +14,4 @@ WORKDIR /usr/src/myapp/
 EXPOSE 8123
 
 ENTRYPOINT ["java", "-jar", "target/app.jar"]
+
