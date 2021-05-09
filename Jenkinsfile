@@ -29,7 +29,7 @@ steps {
  script{
    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub') {
 
-        def customImage = docker.build("pmayukh/webapp:${env.BUILD_NUMBER}")
+        def customImage = docker.build("pmayukh/javaapp:${env.BUILD_NUMBER}")
 
         /* Push the container to the custom Registry */
         customImage.push()
@@ -43,7 +43,7 @@ steps {
 post {
 
           always{
-              junit 'target/surefire-reports/**/*.xml'
+              echo "Job Completed"
           }
       }   
 
