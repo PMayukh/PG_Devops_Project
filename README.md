@@ -6,11 +6,6 @@
 A template project to create a Docker image for a Java application.
 The example application exposes an HTTP endpoint.
 
-The Docker build uses a [multi-stage build setup](https://docs.docker.com/develop/develop-images/multistage-build/)
-to minimize the size of the generated Docker image.
-
-> **Golang developer?** Check out https://github.com/miguno/golang-docker-build-tutorial
-
 
 # Requirements
 
@@ -20,19 +15,18 @@ Docker must be installed. That's it. You do not need a Java JDK or Maven install
 # Usage and Demo
 
 **Step 1:** Create the Docker image according to [Dockerfile](Dockerfile).
-This step uses Maven to build, test, and package the [Java application](src/main/java/com/miguno/App.java)
+This step uses ubuntu as the base image and Maven to build, test, and package the [Java application](src/main/java/com/miguno/App.java)
 according to [pom.xml](pom.xml).  The resulting image is 87MB in size.
 
 ```shell
 # This may take a few minutes.
-$ docker build -t miguno/java-docker-build-tutorial:latest .
+$ docker build -t pmayukh/javaapp:${BUILD_NUMBER} .
 ```
 
 **Step 2:** Start a container for the Docker image.
 
 ```shell
-$ docker run -p 8123:8123 miguno/java-docker-build-tutorial:latest
-```
+$ docker run -p 8123:8123 pmayukh/javaapp:${BUILD_NUMBER}
 
 **Step 3:** Open another terminal and access the example API endpoint.
 
